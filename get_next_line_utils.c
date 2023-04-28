@@ -6,8 +6,63 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 20:33:59 by feden-pe          #+#    #+#             */
-/*   Updated: 2023/04/26 20:34:13 by feden-pe         ###   ########.fr       */
+/*   Updated: 2023/04/28 20:54:57 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+size_t	ft_strlen(char *s)
+{
+	size_t	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+		i++;
+	return (i);
+}
+
+char	*ft_strchr(char *s, int c)
+{
+	if (!s)
+		return (NULL);
+	while (*s)
+	{
+		if (*s == (char)c)
+			return (s);
+		s++;
+	}
+	if (*s == (char)c)
+		return (s);
+	return (NULL);
+}
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	size_t	s1_len;
+	size_t	s2_len;
+	size_t	i;
+	char	*str;
+
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	str = (char *)malloc(sizeof(char) * (s1_len + s2_len) + 1);
+	if (!str)
+		return (NULL);
+	i = 0;
+	if (s1)
+	{
+		while (s1[i])
+		{
+			str[i] = s1[i];
+			i++;
+		}
+	}
+	while (*s2)
+		str[i++] = *s2++;
+	str[i] = '\0';
+	free(s1);
+	return (str);
+}
